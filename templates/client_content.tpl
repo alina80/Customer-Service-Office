@@ -30,7 +30,9 @@
 <div class="row">
     <div class="col-md-4">
         <form class="form-inline" method="post" action="../controllers/ConversationController.php">
-            <label for="conversationSubject" id="newConvSubject">Subject: <input id="conversationSubject" type="text" placeholder="Temat..."></label>
+            <label for="conversationSubject" id="newConvSubject">Subject:
+                <input name="subject" id="conversationSubject" type="text" placeholder="Temat...">
+            </label>
             <button class="btn">Add...</button>
         </form>
     </div>

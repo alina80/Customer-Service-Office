@@ -3,7 +3,7 @@
         <div class="page-header">
             <h2>Create an account</h2>
         </div>
-        <form class="form-inline" action="" method="post">
+        <form class="form-inline" action="../controllers/RegisterController.php" method="post">
             <div class="form-group">
                 <label for="login">Login:</label>
                 <input type="text" class="form-control" id="login" name="login">

@@ -3,7 +3,7 @@
         <div class="page-header">
             <h2>Sign in</h2>
         </div>
-        <form class="form-inline" method="post" action="">
+        <form class="form-inline" method="post" action="../controllers/LoginController.php">
             <div class="form-group">
                 <label for="login">Login:</label>
                 <input type="text" class="form-control" id="login" name="login">
@@ -14,7 +14,7 @@
             </div>
             <button type="submit" class="btn btn-default">Sign in</button>
         </form>
-        <form action="../controllers/RegisterController.php" method="post">
+        <form action="../controllers/RegisterController.php" method="get">
             <button type="submit" class="btn btn-primary">Create an account</button>
         </form>
     </div>
