@@ -7,6 +7,7 @@ if (isset($_SESSION['login'])) {
     require __DIR__ . '/../src/Template.php';
     require __DIR__ . '/../src/Database.php';
     require __DIR__ . '/../models/Conversation.php';
+    require __DIR__ . '/../models/Message.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $subject = isset($_POST['subject']) && strlen(trim($_POST['subject'])) > 0 ?
@@ -33,16 +34,49 @@ if (isset($_SESSION['login'])) {
     }elseif ($_SERVER['REQUEST_METHOD'] === 'GET'){
         $conn = Database::getInstance()->getConnection();
 
-        $conversations = Conversation::loadAllConversations($conn);
+        $conversations = Conversation::loadAllConversationsByClientId($conn,$_SESSION['id']);
 
-        foreach ($conversations as $conv) {
-            $row = new Template(__DIR__ . '/../templates/conversation.tpl');
-            $row->add('subject',$conv->getSubject());
-            $rowsTemplate[] = $row;
+        if (!empty($conversations)){
+            foreach ($conversations as $conv) {
+                $row = new Template(__DIR__ . '/../templates/conversation.tpl');
+                $row->add('subject',$conv->getSubject());
+                $rowsTemplate[] = $row;
 
+            }
         }
 
+        $convMess = Conversation::loadAllConversationsByClientId($conn,$_SESSION['id']);
+
+        foreach ($convMess as $conversation){
+            $messages = Message::loadAllMessagesByConversationId($conn,$conversation->getId());
+
+            if (!empty($messages)){
+                foreach ($messages as $mess){
+                    $messageRow = new Template(__DIR__ . '/../templates/message.tpl');
+                    $messageRow->add('messageSender',$mess->getSenderId());
+                    $messageRow->add('messageText',$mess->getMessage());
+
+                    $messTemplate[] = $messageRow;
+                }
+            }
+        }
+
+        $messagesContent = Template::joinTemplates($messTemplate);
+
         $rowsContent = Template::joinTemplates($rowsTemplate);
+
+        $options = Conversation::loadAllConversationsByClientId($conn,$_SESSION['id']);
+
+        if (!empty($options)){
+
+            foreach ($options as $opt) {
+                $option = new Template(__DIR__ . '/../templates/option.tpl');
+                $option->add('conversationId',$opt->getId());
+                $option->add('subject',$opt->getSubject());
+                $optionsTemplate[] = $option;
+            }
+        }
+        $optionsContent = Template::joinTemplates($optionsTemplate);
     }
 
     $index = new Template(__DIR__ . '/../templates/index.tpl');
@@ -50,6 +84,12 @@ if (isset($_SESSION['login'])) {
     $content = new Template(__DIR__ . '/../templates/client_content.tpl');
 
     $content->add('conversations',$rowsContent);
+
+    $content->add('messages', $messagesContent);
+
+    $content->add('options',$optionsContent);
+
+    $index->add('login',$_SESSION['login']);
 
     $index->add('content', $content->parse());
 

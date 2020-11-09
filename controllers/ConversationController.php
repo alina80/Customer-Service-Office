@@ -11,13 +11,11 @@ if (isset($_SESSION['login'])){
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $subject = isset($_POST['subject']) ? $_POST['subject'] : null;
 
-
         $conn = Database::getInstance()->getConnection();
         $id = $_SESSION['id'];
 
         if(!is_null($subject))
         {
-
             $conversation = new Conversation();
             $conversation->setSubject($subject);
             $conversation->setClientId($id);

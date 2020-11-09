@@ -31,7 +31,7 @@ class Conversation {
                 return true;
             }
             else{
-                echo "Nu s-a adaugat conversatia";
+                echo "The conversation could not be added!";
             }
 
         } else {
@@ -49,26 +49,27 @@ class Conversation {
                 return true;
             }
             else{
-                echo "Nu s-a executat update";
+                echo "The conversation could not be updated!";
             }
         }
 
         return false;
     }
 
-    public static function loadAllConversations(PDO $db, $id = null)
+    public static function loadAllConversations(PDO $conn, $id = null)
     {
         $params = [];
         if (!$id) {
-            $sql = "SELECT * FROM conversations";
+            $sql = "SELECT * FROM `conversations`";
         } else {
-            $sql = "SELECT * FROM conversations WHERE id=:id";
+            $sql = "SELECT * FROM `conversations` WHERE `id`=:id";
             $params = ['id' => $id];
         }
-        $stmt = $db->prepare($sql);
+        $stmt = $conn->prepare($sql);
         $stmt->execute($params);
 
         $conversations = $stmt->fetchAll(PDO::FETCH_OBJ);
+
         $conversationsList = [];
 
         foreach ($conversations as $dbConversations) {
@@ -95,14 +96,42 @@ class Conversation {
             $conversation = new Conversation();
             $conversation->setId($record['id']);
             $conversation->setSubject($record['subject']);
-            $conversation->setClientId($record['clientId']);
-            $conversation->setSupportId($record['supportId']);
+            $conversation->setClientId($record['client_id']);
+            $conversation->setSupportId($record['support_id']);
 
             return $conversation;
         }
 
         return null;
 
+    }
+
+    public static function loadAllConversationsByClientId(PDO $conn, $client_id = null){
+        $params = [];
+        if (!$client_id){
+            $sql = "SELECT * FROM `conversations`";
+        }else {
+            $sql = "SELECT * FROM `conversations` WHERE `client_id` =:client_id";
+            $params = ['client_id' => $client_id];
+        }
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($params);
+
+        $conversations = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $conversationsList = [];
+
+        foreach ($conversations as $dbConversations) {
+            $conversation = new Conversation();
+            $conversation->id = $dbConversations->id;
+            $conversation->client_id =$dbConversations->client_id;
+            $conversation->support_id =$dbConversations->client_id;
+            $conversation->subject = $dbConversations->subject;
+
+            $conversationsList[] = $conversation;
+        }
+
+        return $conversationsList;
     }
 
     public function delete(PDO $conn, int $id)
@@ -112,10 +141,10 @@ class Conversation {
         $result = $stmt->execute(['id'=>$id]);
 
         if($result){
-            echo "s-a sters conversatia cu id ".$id;
+            echo "The conversation with id " . $id . " was deleted!";
             return true;
         }else{
-            echo "Nu s-a sters";
+            echo "The conversation was not deleted!";
             return false;
         }
     }

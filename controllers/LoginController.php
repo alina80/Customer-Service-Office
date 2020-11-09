@@ -48,6 +48,10 @@ $index = new Template(__DIR__ . '/../templates/index.tpl');
 
 $content = new Template(__DIR__ . '/../templates/login.tpl');
 
+if (isset($_SESSION['login'])){
+    $index->add('login',$_SESSION['login'] ? $_SESSION['login'] : null);
+}
+
 $index->add('content', $content->parse());
 
 echo $index->parse();
