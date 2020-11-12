@@ -17,6 +17,8 @@ if (isset($_SESSION['login'])){
 
         $conn = Database::getInstance()->getConnection();
 
+        $userRole = (User::getById($conn,$_SESSION['id']))->getRole();
+
         if(!is_null($subject) && !is_null($textMessage))
         {
             $message = new Message();
@@ -25,8 +27,15 @@ if (isset($_SESSION['login'])){
             $message->setMessage($textMessage);
 
             if($message->saveMessage($conn)) {
-                header('Location: ClientController.php');
-                exit();
+                if ($userRole === 0){
+                    header('Location: ClientController.php');
+                    exit();
+                }
+                if ($userRole === 1){
+                    header('Location: SupportController.php');
+                    exit();
+                }
+
             } else {
                 $message = 'Not done';
             }

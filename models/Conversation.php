@@ -61,14 +61,13 @@ class Conversation {
             }
     }
 
-    public static function loadAllConversations(PDO $conn, $id = null)
+    public static function loadAllOpenConversations(PDO $conn, $support_id = null)
     {
         $params = [];
-        if (!$id) {
-            $sql = "SELECT * FROM `conversations`";
-        } else {
-            $sql = "SELECT * FROM `conversations` WHERE `id`=:id";
-            $params = ['id' => $id];
+        if (!$support_id){
+
+            $sql = "SELECT * FROM `conversations` WHERE `support_id` IS NULL ";
+            $params = ['support_id' => null];
         }
         $stmt = $conn->prepare($sql);
         $stmt->execute($params);
@@ -81,7 +80,7 @@ class Conversation {
             $conversation = new Conversation();
             $conversation->id = $dbConversations->id;
             $conversation->client_id =$dbConversations->client_id;
-            $conversation->support_id =$dbConversations->client_id;
+            $conversation->support_id =$dbConversations->support_id;
             $conversation->subject = $dbConversations->subject;
 
             $conversationsList[] = $conversation;
@@ -106,9 +105,7 @@ class Conversation {
 
             return $conversation;
         }
-
         return null;
-
     }
 
     public static function loadAllConversationsByClientId(PDO $conn, $client_id = null){
@@ -130,7 +127,7 @@ class Conversation {
             $conversation = new Conversation();
             $conversation->id = $dbConversations->id;
             $conversation->client_id =$dbConversations->client_id;
-            $conversation->support_id =$dbConversations->client_id;
+            $conversation->support_id =$dbConversations->support_id;
             $conversation->subject = $dbConversations->subject;
 
             $conversationsList[] = $conversation;
@@ -165,21 +162,6 @@ class Conversation {
         }
 
         return $conversationsList;
-    }
-
-    public function delete(PDO $conn, int $id)
-    {
-        $sql = "DELETE FROM `conversations` WHERE id=:id";
-        $stmt = $conn->prepare($sql);
-        $result = $stmt->execute(['id'=>$id]);
-
-        if($result){
-            echo "The conversation with id " . $id . " was deleted!";
-            return true;
-        }else{
-            echo "The conversation was not deleted!";
-            return false;
-        }
     }
 
     /**

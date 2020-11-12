@@ -90,19 +90,6 @@ class Message{
         return false;
     }
 
-    public function delete(PDO $conn, int $id)
-    {
-        $sql = "DELETE FROM `messages` WHERE id=:id";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(
-            [
-                'id' => $this->id,
-            ]
-        );
-
-        return $stmt->rowCount() > 0;
-    }
-
     /**
      * @return int
      */

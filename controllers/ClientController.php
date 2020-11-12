@@ -10,30 +10,12 @@ if (isset($_SESSION['login'])) {
     require __DIR__ . '/../models/Message.php';
     require __DIR__ . '/../models/User.php';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-//        $subject = isset($_POST['subject']) && strlen(trim($_POST['subject'])) > 0 ?
-//            $_POST['subject'] : null;
-//
-//        $conn = Database::getInstance()->getConnection();
-//        $id = $_SESSION['id'];
-//
-//        if (!is_null($subject) && is_null(Conversation::getConversationById($conn,$id))) {
-//            $conversation = new Conversation();
-//            $conversation->setSubject($subject);
-//            $conversation->setClientId(User::getById($conn, $id));
-//
-//            if ($conversation->saveConversation($conn)) {
-//                header('Location: controllers/ClientController.php');
-//                exit();
-//            } else {
-//                $message = 'not done';
-//            }
-//        }else{
-//            echo "error data";
-//        }
-
-    }elseif ($_SERVER['REQUEST_METHOD'] === 'GET'){
+if ($_SERVER['REQUEST_METHOD'] === 'GET'){
         $conn = Database::getInstance()->getConnection();
+
+        $rowsTemplate = [];
+        $optionsTemplate = [];
+        $messTemplate = [];
 
         $conversations = Conversation::loadAllConversationsByClientId($conn,$_SESSION['id']);
 
@@ -44,6 +26,7 @@ if (isset($_SESSION['login'])) {
                 $rowsTemplate[] = $row;
             }
         }
+        $rowsContent = Template::joinTemplates($rowsTemplate);
 
         $convMess = Conversation::loadAllConversationsByClientId($conn,$_SESSION['id']);
 
@@ -64,7 +47,7 @@ if (isset($_SESSION['login'])) {
 
         $messagesContent = Template::joinTemplates($messTemplate);
 
-        $rowsContent = Template::joinTemplates($rowsTemplate);
+
 
         $options = Conversation::loadAllConversationsByClientId($conn,$_SESSION['id']);
 

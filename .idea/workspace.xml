@@ -22,10 +22,10 @@
     <list default="true" id="4509abb6-d904-40bc-bde1-6e6c711fc20a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ClientController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/MessageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/SupportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/SupportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/open_conversation.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/open_conversation.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/support_content.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/support_content.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Conversation.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Conversation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Message.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Advanced-Php-Ecercises" />
+    <property name="settings.editor.selected.configurable" value="SQL Dialects" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -64,6 +65,7 @@
       <updated>1604634155622</updated>
       <workItem from="1604634156813" duration="431000" />
       <workItem from="1604643819046" duration="71137000" />
+      <workItem from="1605166586363" duration="5836000" />
     </task>
     <servers />
   </component>
@@ -90,6 +92,14 @@
       <screen x="55" y="27" width="1311" height="741" />
     </state>
     <state x="355" y="27" width="700" height="741" key="#PHP/55.27.1311.741@55.27.1311.741" timestamp="1604645198978" />
+    <state x="55" y="249" width="1301" height="294" key="#SQL_Dialects" timestamp="1605172034866">
+      <screen x="55" y="27" width="1311" height="741" />
+    </state>
+    <state x="55" y="249" width="1301" height="294" key="#SQL_Dialects/55.27.1311.741@55.27.1311.741" timestamp="1605172034866" />
+    <state x="305" y="58" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605172327809">
+      <screen x="55" y="27" width="1311" height="741" />
+    </state>
+    <state x="305" y="58" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/55.27.1311.741@55.27.1311.741" timestamp="1605172327809" />
     <state x="411" y="198" width="589" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604634365928">
       <screen x="55" y="27" width="1311" height="741" />
     </state>
@@ -106,5 +116,9 @@
       <screen x="55" y="27" width="1311" height="741" />
     </state>
     <state x="293" y="142" width="824" height="508" key="IDE.errors.dialog/55.27.1311.741@55.27.1311.741" timestamp="1604634581541" />
+    <state x="199" y="31" key="SettingsEditor" timestamp="1605172527226">
+      <screen x="55" y="27" width="1311" height="741" />
+    </state>
+    <state x="199" y="31" key="SettingsEditor/55.27.1311.741@55.27.1311.741" timestamp="1605172527226" />
   </component>
 </project>
