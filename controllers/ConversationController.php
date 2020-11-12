@@ -10,15 +10,18 @@ if (isset($_SESSION['login'])){
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $subject = isset($_POST['subject']) ? $_POST['subject'] : null;
+        $id = isset($_POST['id']) ? $_POST['id'] : null;
+        $client_id = isset($_POST['client_id']) ? $_POST['client_id'] : null;
+
 
         $conn = Database::getInstance()->getConnection();
-        $id = $_SESSION['id'];
 
-        if(!is_null($subject))
+        if(!is_null($subject) && is_null($id) && is_null($client_id))
         {
+            $client_id = $_SESSION['id'];
             $conversation = new Conversation();
             $conversation->setSubject($subject);
-            $conversation->setClientId($id);
+            $conversation->setClientId($client_id);
 
             if($conversation->saveConversation($conn)) {
                 header('Location: ClientController.php');
@@ -27,8 +30,23 @@ if (isset($_SESSION['login'])){
                 $message = 'not done';
             }
 
-        } else {
-            $message = 'error data';
+        } elseif (!is_null($subject) && !is_null($id) && !is_null($client_id)) {
+
+            $support_id = $_SESSION['id'];
+
+            $conversation = new Conversation();
+            $conversation->setId($id);
+            $conversation->setClientId($client_id);
+            $conversation->setSupportId($support_id);
+            $conversation->setSubject($subject);
+
+            if ($conversation->update($conn, $id)){
+                header('Location: SupportController.php');
+                exit();
+            }else{
+                $message = 'error data';
+
+            }
         }
     }
 

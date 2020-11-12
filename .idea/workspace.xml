@@ -20,9 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4509abb6-d904-40bc-bde1-6e6c711fc20a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ClientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Conversation.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Conversation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/SupportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/SupportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/open_conversation.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/open_conversation.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/support_content.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/support_content.tpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +51,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TwitterStyleApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Advanced-Php-Ecercises" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -60,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1604634155622</updated>
       <workItem from="1604634156813" duration="431000" />
-      <workItem from="1604643819046" duration="22638000" />
+      <workItem from="1604643819046" duration="71137000" />
     </task>
     <servers />
   </component>
@@ -91,14 +94,14 @@
       <screen x="55" y="27" width="1311" height="741" />
     </state>
     <state x="411" y="198" width="589" height="396" key="#com.intellij.fileTypes.FileTypeChooser/55.27.1311.741@55.27.1311.741" timestamp="1604634365928" />
-    <state x="485" y="106" width="441" height="581" key="#com.intellij.ide.util.MemberChooser" timestamp="1604645487967">
+    <state x="485" y="106" width="441" height="581" key="#com.intellij.ide.util.MemberChooser" timestamp="1604897800265">
       <screen x="55" y="27" width="1311" height="741" />
     </state>
-    <state x="485" y="106" width="441" height="581" key="#com.intellij.ide.util.MemberChooser/55.27.1311.741@55.27.1311.741" timestamp="1604645487967" />
-    <state x="493" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1604730027678">
+    <state x="485" y="106" width="441" height="581" key="#com.intellij.ide.util.MemberChooser/55.27.1311.741@55.27.1311.741" timestamp="1604897800265" />
+    <state x="493" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1605019606008">
       <screen x="55" y="27" width="1311" height="741" />
     </state>
-    <state x="493" y="154" width="424" height="484" key="FileChooserDialogImpl/55.27.1311.741@55.27.1311.741" timestamp="1604730027678" />
+    <state x="493" y="154" width="424" height="484" key="FileChooserDialogImpl/55.27.1311.741@55.27.1311.741" timestamp="1605019606008" />
     <state x="293" y="142" width="824" height="508" key="IDE.errors.dialog" timestamp="1604634581541">
       <screen x="55" y="27" width="1311" height="741" />
     </state>

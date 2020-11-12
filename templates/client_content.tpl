@@ -40,8 +40,8 @@
         <hr>
         <form method="post" action="../controllers/ConversationController.php">
             <div class="form-group">
-                <label for="conversationSubject" id="newConvSubject">Subject: </label>
-                    <input class="form-control" name="subject" id="conversationSubject" type="text" placeholder="Topic...">
+                <label for="conversationSubject">Subject: </label>
+                <input class="form-control" name="subject" id="conversationSubject" type="text" placeholder="Topic...">
             </div>
 
             <button class="btn btn-info">Add...</button>

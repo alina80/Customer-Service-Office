@@ -8,28 +8,29 @@ if (isset($_SESSION['login'])) {
     require __DIR__ . '/../src/Database.php';
     require __DIR__ . '/../models/Conversation.php';
     require __DIR__ . '/../models/Message.php';
+    require __DIR__ . '/../models/User.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $subject = isset($_POST['subject']) && strlen(trim($_POST['subject'])) > 0 ?
-            $_POST['subject'] : null;
-
-        $conn = Database::getInstance()->getConnection();
-        $id = $_SESSION['id'];
-
-        if (!is_null($subject) && is_null(Conversation::getConversationById($conn,$id))) {
-            $conversation = new Conversation();
-            $conversation->setSubject($subject);
-            $conversation->setClientId(User::getById($conn, $id));
-
-            if ($conversation->saveConversation($conn)) {
-                header('Location: controllers/ClientController.php');
-                exit();
-            } else {
-                $message = 'not done';
-            }
-        }else{
-            echo "error data";
-        }
+//        $subject = isset($_POST['subject']) && strlen(trim($_POST['subject'])) > 0 ?
+//            $_POST['subject'] : null;
+//
+//        $conn = Database::getInstance()->getConnection();
+//        $id = $_SESSION['id'];
+//
+//        if (!is_null($subject) && is_null(Conversation::getConversationById($conn,$id))) {
+//            $conversation = new Conversation();
+//            $conversation->setSubject($subject);
+//            $conversation->setClientId(User::getById($conn, $id));
+//
+//            if ($conversation->saveConversation($conn)) {
+//                header('Location: controllers/ClientController.php');
+//                exit();
+//            } else {
+//                $message = 'not done';
+//            }
+//        }else{
+//            echo "error data";
+//        }
 
     }elseif ($_SERVER['REQUEST_METHOD'] === 'GET'){
         $conn = Database::getInstance()->getConnection();
@@ -41,7 +42,6 @@ if (isset($_SESSION['login'])) {
                 $row = new Template(__DIR__ . '/../templates/conversation.tpl');
                 $row->add('subject',$conv->getSubject());
                 $rowsTemplate[] = $row;
-
             }
         }
 
@@ -53,7 +53,8 @@ if (isset($_SESSION['login'])) {
             if (!empty($messages)){
                 foreach ($messages as $mess){
                     $messageRow = new Template(__DIR__ . '/../templates/message.tpl');
-                    $messageRow->add('messageSender',$mess->getSenderId());
+                    $userName = User::getById($conn,$mess->getSenderId())->getLogin();
+                    $messageRow->add('messageSender',$userName);
                     $messageRow->add('messageText',$mess->getMessage());
 
                     $messTemplate[] = $messageRow;
@@ -95,5 +96,6 @@ if (isset($_SESSION['login'])) {
 
     echo $index->parse();
 }else{
-    echo "Not allowed! Please login first!";
+    header('Location: LoginController.php');
+    exit();
 }

@@ -33,13 +33,20 @@ class Conversation {
             else{
                 echo "The conversation could not be added!";
             }
+        }
+        return false;
+    }
 
-        } else {
+    public function update(PDO $conn, $id)
+    {
             $sql = "UPDATE `conversations` SET `subject` = :subject, `client_id`= :client_id, `support_id`= :support_id 
                     WHERE id = :id";
             $stmt = $conn->prepare($sql);
+            echo $this->client_id;
+            echo $this->support_id;
+            echo $this->subject;
             $result = $stmt->execute([
-                'id'=>$this->id,
+                'id'=>$id,
                 'subject'=>$this->subject,
                 'client_id'=>$this->client_id,
                 'support_id'=>$this->support_id,
@@ -50,10 +57,8 @@ class Conversation {
             }
             else{
                 echo "The conversation could not be updated!";
+                return false;
             }
-        }
-
-        return false;
     }
 
     public static function loadAllConversations(PDO $conn, $id = null)
@@ -113,6 +118,34 @@ class Conversation {
         }else {
             $sql = "SELECT * FROM `conversations` WHERE `client_id` =:client_id";
             $params = ['client_id' => $client_id];
+        }
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($params);
+
+        $conversations = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $conversationsList = [];
+
+        foreach ($conversations as $dbConversations) {
+            $conversation = new Conversation();
+            $conversation->id = $dbConversations->id;
+            $conversation->client_id =$dbConversations->client_id;
+            $conversation->support_id =$dbConversations->client_id;
+            $conversation->subject = $dbConversations->subject;
+
+            $conversationsList[] = $conversation;
+        }
+
+        return $conversationsList;
+    }
+
+    public static function loadAllConversationsBySupportId(PDO $conn, $support_id = null){
+        $params = [];
+        if (!$support_id){
+            $sql = "SELECT * FROM `conversations`";
+        }else {
+            $sql = "SELECT * FROM `conversations` WHERE `support_id` =:support_id";
+            $params = ['support_id' => $support_id];
         }
 
         $stmt = $conn->prepare($sql);
